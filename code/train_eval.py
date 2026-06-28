@@ -57,6 +57,14 @@ LABEL = "is_goal"
 # 统一随机种子,保证实验结果可复现。
 RANDOM_STATE = 42
 
+# 这个脚本是“实验编排器”:
+# - 输入是 prepare_data.py 生成的 shots.csv;
+# - 输出是一组可比较的模型实验结果。
+# 这里最重要的不是模型名字本身,而是实验设置是否干净:
+# 1. 按比赛分组切分,避免同一场比赛的数据泄漏;
+# 2. 只在训练集上做 SMOTE;
+# 3. 验证集和测试集职责分离,给后续调参留空间。
+
 
 def load_data(path: Path) -> pd.DataFrame:
     """Load the shot dataframe and verify the required columns are present.
@@ -94,6 +102,8 @@ def make_logreg_pipeline(class_weight=None) -> Pipeline:
 
     构造 Logistic Regression pipeline:数值特征标准化,二值特征直接通过。
     """
+    # Logistic Regression 对特征尺度敏感,所以数值列要标准化。
+    # 二值列已经是 0/1,直接 passthrough 即可。
     pre = ColumnTransformer(
         transformers=[
             ("num", StandardScaler(), NUMERIC_FEATURES),
@@ -115,6 +125,8 @@ def make_xgb(scale_pos_weight: float | None = None) -> XGBClassifier:
 
     构造 XGBoost 分类器;参数选择偏保守,适合中等规模表格数据。
     """
+    # 这里没有做系统调参,而是给出一组偏稳健的默认参数,
+    # 目的不是刷榜,而是先得到一个可复现、可解释的 baseline 对照。
     params = dict(
         n_estimators=400,
         max_depth=5,
@@ -137,6 +149,8 @@ def smote_resample(X: pd.DataFrame, y: pd.Series) -> tuple[pd.DataFrame, pd.Seri
 
     仅在训练集上使用 SMOTE 生成少数类样本,避免测试集数据泄漏。
     """
+    # SMOTE 的本质是对少数类做插值扩增,缓解正负样本极不平衡的问题。
+    # 这里的前提是假设少数类在特征空间里具有可平滑插值的结构。
     smote = SMOTE(random_state=RANDOM_STATE, k_neighbors=5)
     X_res, y_res = smote.fit_resample(X.values, y.values)
     return pd.DataFrame(X_res, columns=X.columns), pd.Series(y_res, name=y.name)
@@ -152,6 +166,7 @@ def train_one(
 
     训练一个模型配置,返回测试集指标和每个测试样本的进球概率。
     """
+    # 训练和测试严格使用同一套特征列,避免实验之间因为特征集不一致而不可比。
     X_train, y_train = train_df[ALL_FEATURES], train_df[LABEL]
     X_test, y_test = test_df[ALL_FEATURES], test_df[LABEL]
 
@@ -180,6 +195,8 @@ def train_one(
     else:
         raise ValueError(f"unknown model {model_name!r}")
 
+    # 这里保存的是概率而不是只保存 hard label,
+    # 因为 xG 本质上是概率任务,而 ROC/AUC、log-loss 也依赖概率输出。
     row = evaluate_predictions(y_test.to_numpy(), proba, model=model_name, imbalance=imbalance)
     return row, proba
 
@@ -189,6 +206,8 @@ def save_xgb_feature_importance(train_df: pd.DataFrame) -> None:
 
     在训练集上重新拟合一个普通 XGBoost,并保存 gain 特征重要性。
     """
+    # 特征重要性单独在“完整训练集”上重训一个 vanilla XGBoost,
+    # 是为了给报告画图,不和上面 6 组测试集结果混在一起解释。
     X_train, y_train = train_df[ALL_FEATURES], train_df[LABEL]
     clf = make_xgb()
     clf.fit(X_train, y_train)
@@ -207,6 +226,8 @@ def save_xgb_feature_importance(train_df: pd.DataFrame) -> None:
     fi = pd.DataFrame(rows).sort_values("gain", ascending=False)
     for f in ALL_FEATURES:
         if f not in fi["feature"].values:
+            # 某些特征可能在树分裂中一次都没被用到。
+            # 这里显式补成 0,方便后续画图和报告表格保持特征全集一致。
             fi = pd.concat(
                 [fi, pd.DataFrame([{"feature": f, "gain": 0.0}])], ignore_index=True
             )
@@ -240,6 +261,7 @@ def main(shots_path: Path) -> None:
             print(f"\n>> training {model_name.upper()} | imbalance={imbalance}")
             row, proba = train_one(model_name, imbalance, train_df, test_df)
             rows.append(row)
+            # 每个测试样本的预测概率单独存下来,给 make_plots.py 画 ROC 曲线。
             for p, y, mid in zip(proba, test_df[LABEL].to_numpy(), test_df["match_id"].to_numpy()):
                 pred_records.append(
                     {

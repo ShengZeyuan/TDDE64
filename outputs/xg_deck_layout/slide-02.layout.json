@@ -1,0 +1,757 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/m6k0do",
+    "id": "m6k0do",
+    "slide": 2,
+    "layoutId": "570e6e51-e324-47a1-a74d-4ff5b774887c",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "8feec017-c633-44f2-bab7-d1d871bf7560",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "570e6e51-e324-47a1-a74d-4ff5b774887c",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "8feec017-c633-44f2-bab7-d1d871bf7560",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "8feec017-c633-44f2-bab7-d1d871bf7560",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xs72x4na",
+      "id": "1",
+      "bbox": [
+        54,
+        36,
+        500,
+        28
+      ],
+      "geometry": "rect",
+      "text": "EXPECTED GOALS MODELING",
+      "textPreview": "EXPECTED GOALS MODELING",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "EXPECTED GOALS MODELING"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "EXPECTED GOALS MODELING",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#555555",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "EXPECTED GOALS MODELING",
+              "fontSize": 15,
+              "color": "#555555",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q1orytsv",
+      "id": "2",
+      "bbox": [
+        54,
+        72,
+        940,
+        64
+      ],
+      "geometry": "rect",
+      "text": "Problem Framing",
+      "textPreview": "Problem Framing",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Problem Framing"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Problem Framing",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "color": "#111111",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Problem Framing",
+              "fontSize": 42,
+              "color": "#111111",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fmlkjm1c",
+      "id": "3",
+      "bbox": [
+        54,
+        146,
+        1172,
+        1
+      ],
+      "geometry": "rect",
+      "fillColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8z25kb6x",
+      "id": "4",
+      "bbox": [
+        76,
+        190,
+        700,
+        88
+      ],
+      "geometry": "rect",
+      "text": "The task is not to predict match winners. It predicts the probability that a single shot becomes a goal.",
+      "textPreview": "The task is not to predict match winners. It predicts the probability that a single shot becomes a goal.",
+      "resolvedFontSize": 30,
+      "resolvedTextStyle": {
+        "fontSize": 30,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The task is not to predict match winners. It"
+          },
+          {
+            "index": 2,
+            "text": "predicts the probability that a single shot becomes"
+          },
+          {
+            "index": 3,
+            "text": "a goal."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The task is not to predict match winners. It predicts the probability that a single shot becomes a goal.",
+          "resolvedTextStyle": {
+            "fontSize": 30,
+            "color": "#111111",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The task is not to predict match winners. It predicts the probability that a single shot becomes a goal.",
+              "fontSize": 30,
+              "color": "#111111",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1gvy90je",
+      "id": "5",
+      "bbox": [
+        82,
+        339,
+        7,
+        7
+      ],
+      "fillColor": "#FF6B35",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qtcj6tov",
+      "id": "6",
+      "bbox": [
+        102,
+        330,
+        590,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Unit of analysis: one shot event.",
+      "textPreview": "Unit of analysis: one shot event.",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Unit of analysis: one shot event."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Unit of analysis: one shot event.",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#111111"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Unit of analysis: one shot event.",
+              "fontSize": 21,
+              "color": "#111111"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/je9cvixc",
+      "id": "7",
+      "bbox": [
+        82,
+        397,
+        7,
+        7
+      ],
+      "fillColor": "#FF6B35",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8v6psfil",
+      "id": "8",
+      "bbox": [
+        102,
+        388,
+        640,
+        76
+      ],
+      "geometry": "rect",
+      "text": "Input: shot location, geometry, body part, free-kick flag, match time, and score context.",
+      "textPreview": "Input: shot location, geometry, body part, free-kick flag, match time, and score context.",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Input: shot location, geometry, body part, free-kick flag, match"
+          },
+          {
+            "index": 2,
+            "text": "time, and score context."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Input: shot location, geometry, body part, free-kick flag, match time, and score context.",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#111111"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Input: shot location, geometry, body part, free-kick flag, match time, and score context.",
+              "fontSize": 21,
+              "color": "#111111"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xczed8v6",
+      "id": "9",
+      "bbox": [
+        82,
+        477,
+        7,
+        7
+      ],
+      "fillColor": "#FF6B35",
+      "lineWidth": 1
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/donyd0z6",
+      "id": "10",
+      "bbox": [
+        102,
+        468,
+        630,
+        58
+      ],
+      "geometry": "rect",
+      "text": "Output: a probability score, interpreted as expected goals.",
+      "textPreview": "Output: a probability score, interpreted as expected goals.",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Output: a probability score, interpreted as expected goals."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Output: a probability score, interpreted as expected goals.",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#111111"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Output: a probability score, interpreted as expected goals.",
+              "fontSize": 21,
+              "color": "#111111"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k3q5o7qp",
+      "id": "11",
+      "bbox": [
+        826,
+        192,
+        330,
+        330
+      ],
+      "geometry": "rect",
+      "fillColor": "#EDEDED",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vixczed8",
+      "id": "12",
+      "bbox": [
+        930,
+        250,
+        130,
+        82
+      ],
+      "geometry": "rect",
+      "text": "xG",
+      "textPreview": "xG",
+      "resolvedFontSize": 78,
+      "resolvedTextStyle": {
+        "fontSize": 78,
+        "typeface": "+mn-lt",
+        "color": "#FF6B35",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "xG"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "xG",
+          "resolvedTextStyle": {
+            "fontSize": 78,
+            "color": "#FF6B35",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "xG",
+              "fontSize": 78,
+              "color": "#FF6B35",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2x4nap4r",
+      "id": "13",
+      "bbox": [
+        868,
+        360,
+        260,
+        42
+      ],
+      "geometry": "rect",
+      "text": "P(goal | shot features)",
+      "textPreview": "P(goal | shot features)",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "P(goal | shot"
+          },
+          {
+            "index": 2,
+            "text": "features)"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "P(goal | shot features)",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#111111",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "P(goal | shot features)",
+              "fontSize": 25,
+              "color": "#111111",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dcbulwva",
+      "id": "14",
+      "bbox": [
+        878,
+        420,
+        240,
+        72
+      ],
+      "geometry": "rect",
+      "text": "A probability model for shot quality",
+      "textPreview": "A probability model for shot quality",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A probability model for"
+          },
+          {
+            "index": 2,
+            "text": "shot quality"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A probability model for shot quality",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#555555"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A probability model for shot quality",
+              "fontSize": 20,
+              "color": "#555555"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kre1w7mp",
+      "id": "15",
+      "bbox": [
+        1090,
+        672,
+        136,
+        24
+      ],
+      "geometry": "rect",
+      "text": "xG project / 2",
+      "textPreview": "xG project / 2",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#555555",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "xG project / 2"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "xG project / 2",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#555555"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "xG project / 2",
+              "fontSize": 14,
+              "color": "#555555"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 1
+    }
+  ],
+  "composeRuns": []
+}

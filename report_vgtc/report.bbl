@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{caley2013xg}
+M.~Caley.
+\newblock {Premier League} projections and new expected goals.
+\newblock Cartilage Free Captain blog, 2013.
+
+\bibitem{xgSerieA2024}
+M.~Cefis and M.~Carpita.
+\newblock A new {xG} model for football analytics.
+\newblock {\em Journal of the Operational Research Society}, 76(1):1--14, 2024.
+
+\bibitem{chawla2002smote}
+N.~V. Chawla, K.~W. Bowyer, L.~O. Hall, and W.~P. Kegelmeyer.
+\newblock {SMOTE}: Synthetic minority over-sampling technique.
+\newblock {\em Journal of Artificial Intelligence Research}, 16:321--357, 2002.
+
+\bibitem{chen2016xgboost}
+T.~Chen and C.~Guestrin.
+\newblock {XGBoost}: A scalable tree boosting system.
+\newblock In {\em Proceedings of the 22nd ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, pages 785--794, 2016.
+
+\bibitem{grinsztajn2022tabular}
+L.~Grinsztajn, E.~Oyallon, and G.~Varoquaux.
+\newblock Why do tree-based models still outperform deep learning on typical
+  tabular data?
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  volume~35, pages 507--520, 2022.
+
+\bibitem{pappalardo2019wyscout}
+L.~Pappalardo, P.~Cintia, A.~Rossi, E.~Massucco, P.~Ferragina, D.~Pedreschi,
+  and F.~Giannotti.
+\newblock A public data set of spatio-temporal match events in soccer
+  competitions.
+\newblock {\em Scientific Data}, 6(1):236, 2019.
+
+\end{thebibliography}

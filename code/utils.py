@@ -32,6 +32,13 @@ DATA_DIR.mkdir(exist_ok=True)
 FIGURES_DIR.mkdir(exist_ok=True)
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
+# utils.py 放的是“跨脚本共享”的底层能力:
+# - 球场几何换算
+# - Wyscout tag 判断
+# - 统一评估指标
+# 这样 prepare_data.py、train_eval.py、make_plots.py 都能复用,
+# 避免把同样的逻辑散落在多个脚本里。
+
 
 def wyscout_xy_to_metres(x_pct: np.ndarray, y_pct: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Convert Wyscout (0..100, 0..100) percentage coordinates to metres.
@@ -50,6 +57,8 @@ def shot_distance(x_pct: np.ndarray, y_pct: np.ndarray) -> np.ndarray:
 
     计算射门点到球门中心的欧氏距离,单位为米。
     """
+    # 这里默认射门总是朝“进攻方向的对方球门”进行,
+    # 因为 Wyscout 坐标已经做了进攻方向归一化。
     x_m, y_m = wyscout_xy_to_metres(x_pct, y_pct)
     return np.sqrt((PITCH_LENGTH_M - x_m) ** 2 + (PITCH_WIDTH_M / 2.0 - y_m) ** 2)
 
@@ -115,6 +124,7 @@ class EvalRow:
     log_loss: float
 
     def as_dict(self) -> dict:
+        # 统一转成 dict,方便直接喂给 pandas DataFrame。
         return {
             "model": self.model,
             "imbalance": self.imbalance,
@@ -139,6 +149,9 @@ def evaluate_predictions(
     根据预测概率计算 AUC、F1、敏感度、特异度和 log-loss。
     threshold 只影响 F1/sensitivity/specificity,不影响 AUC。
     """
+    # 这里同时保留“概率视角”和“分类视角”两套指标:
+    # - AUC / log-loss 看概率排序和概率质量
+    # - F1 / sensitivity / specificity 看固定阈值下的分类效果
     y_pred = (y_proba >= threshold).astype(int)
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred, labels=[0, 1]).ravel()
     sens = tp / (tp + fn) if (tp + fn) > 0 else 0.0
@@ -175,8 +188,7 @@ def latex_results_table(df: pd.DataFrame) -> str:
     cols = ["auc_roc", "auc_pr", "f1", "sensitivity", "specificity"]
     lines = []
     for _, row in df.iterrows():
-        imbalance = str(row["imbalance"]).replace("_", r"\_")
-        cells = [f"{row['model']}", imbalance]
+        cells = [f"{row['model']}", f"{row['imbalance'].replace('_', '\\_')}"]
         cells += [f"{row[c]:.3f}" for c in cols]
         lines.append(" & ".join(cells) + " \\\\")
     return "\n".join(lines) + "\n"

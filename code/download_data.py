@@ -40,6 +40,12 @@ ARTICLES = {
     "matches": 7770422,
 }
 
+# 这个脚本的职责很单一:
+# 1. 通过 Figshare API 找到 article 下面真实可下载的文件;
+# 2. 把 zip 包和 JSON 文件下载到 data 目录;
+# 3. 如果下载的是 zip,就在本地立即解压。
+# 它不负责做任何数据清洗和建模,只负责把原始数据准备齐。
+
 
 def list_files(article_id: int) -> list[dict]:
     """Return the list of file metadata dicts for one Figshare article.
@@ -95,6 +101,8 @@ def main(only: list[str] | None = None) -> None:
 
     下载用户指定的 Wyscout 数据 article;默认下载全部必需数据。
     """
+    # 默认把本项目需要的 article 全部拉下来;
+    # 如果用户显式指定 --only,就只下载对应部分,方便调试。
     targets = only or list(ARTICLES.keys())
     print(f"Downloading Wyscout open data into: {DATA_DIR.resolve()}")
     for name in targets:
@@ -112,9 +120,14 @@ def main(only: list[str] | None = None) -> None:
             print(f"  [warn] could not list files: {exc} (skipping)")
             continue
         for f in files:
+            # Figshare 返回的是文件元数据字典,其中最关键的是:
+            # - name: 本地文件名
+            # - download_url: 实际下载地址
             dest = DATA_DIR / f["name"]
             download_file(f["download_url"], dest)
             if dest.suffix == ".zip":
+                # 原始开放数据往往是压缩包形式,这里下载后直接解压,
+                # 这样后续 prepare_data.py 可以直接读取 events_*.json / matches_*.json。
                 unzip_in_place(dest, DATA_DIR)
     print("\nAll done. Files are in", DATA_DIR.resolve())
 

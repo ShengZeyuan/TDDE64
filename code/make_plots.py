@@ -34,6 +34,15 @@ plt.rcParams.update(
 MODEL_LABELS = {"lr": "Logistic Regression", "xgb": "XGBoost"}
 IMBAL_LABELS = {"none": "none", "class_weight": "class weight", "smote": "SMOTE"}
 
+# 这个脚本只做“结果可视化”,不重新训练模型。
+# 也就是说它依赖 train_eval.py 已经把:
+# - 测试集预测概率
+# - 特征重要性
+# 保存到 results 目录里。
+# 这样做的好处是:
+# 1. 画图和训练解耦,便于反复调图;
+# 2. 报告图可以基于同一份固定结果重复生成。
+
 
 def plot_roc_curves(predictions: pd.DataFrame, out: Path) -> None:
     """Overlay ROC curves for every (model, imbalance) configuration.
@@ -63,6 +72,8 @@ def plot_feature_importance(fi: pd.DataFrame, out: Path) -> None:
 
     绘制 XGBoost 的 gain 特征重要性横向柱状图。
     """
+    # 这里只取 top-15,是为了让图在报告里更可读;
+    # 如果把所有特征都塞进去,信息密度会很低。
     fi = fi.sort_values("gain", ascending=True).tail(15)
     fig, ax = plt.subplots(figsize=(6, 4))
     ax.barh(fi["feature"], fi["gain"], color="#3a7ca5")
@@ -79,6 +90,8 @@ def _binned_rate(values: pd.Series, label: pd.Series, bins: np.ndarray) -> tuple
 
     按区间分箱计算平均进球率,并返回每个区间中心点和对应进球率。
     """
+    # EDA 图不直接画散点,而是先分箱再看每个区间的经验进球率,
+    # 否则射门样本太多,图上会非常乱。
     cats = pd.cut(values, bins, include_lowest=True)
     rates = label.groupby(cats, observed=False).mean().reindex(cats.cat.categories)
     centres = (bins[:-1] + bins[1:]) / 2

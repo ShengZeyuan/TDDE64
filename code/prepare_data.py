@@ -54,6 +54,13 @@ MATCH_FILES = {
     "Euro": "matches_European_Championship.json",
 }
 
+# 这份脚本是整个 xG pipeline 里最关键的数据准备环节。
+# 原始 Wyscout 文件是 event-level 日志,一场比赛里混杂了传球、对抗、犯规、射门等各种事件;
+# 但下游模型真正需要的是 shot-level 数据集:
+# “每一脚射门”一行,包含特征和是否进球的标签。
+# 所以这里做的事情本质上是:
+# event log -> 过滤出射门 -> 补上比分上下文 -> 生成几何特征 -> 导出 shots.csv
+
 
 def load_match_index(path: Path) -> dict[int, dict[int, str]]:
     """Build {match_id: {team_id: 'home'|'away'}} for one competition.
@@ -109,6 +116,9 @@ def extract_shots_one_competition(
         sides = matches_idx.get(match_id)
         if not sides:
             continue
+        # score 保存“当前时刻”两队比分。
+        # 注意这里是边遍历事件边更新,而不是事后回填最终比分,
+        # 否则 score_diff 会泄漏未来信息。
         score: dict[int, int] = {team_id: 0 for team_id in sides}
         for idx, ev in sub.iterrows():
             team_id = ev["teamId"]
@@ -144,6 +154,8 @@ def extract_shots_one_competition(
             body_foot = int(has_tag(tags, TAG_LEFT_FOOT) or has_tag(tags, TAG_RIGHT_FOOT))
             body_head = int(has_tag(tags, TAG_HEAD_OR_BODY))
             score_diff = score[team_id] - score[opp_id]
+            # 这里保留的是“射门发生当下模型能看到的信息”。
+            # 不要把射门之后才知道的结果塞进特征里,否则会导致训练/测试指标虚高。
             rows.append(
                 {
                     "match_id": match_id,
@@ -175,6 +187,7 @@ def add_geometric_features(df: pd.DataFrame) -> pd.DataFrame:
 
     增加两个核心 xG 几何特征:射门距离和可见球门角度。
     """
+    # copy 一份再写列,避免调用方传进来的 dataframe 被原地修改。
     df = df.copy()
     df["distance"] = shot_distance(df["x"].to_numpy(), df["y"].to_numpy())
     df["angle"] = shot_angle(df["x"].to_numpy(), df["y"].to_numpy())
@@ -200,6 +213,7 @@ def main() -> None:
     if not all_shots:
         print("\nNo data found. Run download_data.py first.")
         return
+    # 不同赛事抽出来的 shot-level 表按行拼接,形成统一训练集。
     shots = pd.concat(all_shots, ignore_index=True)
     shots = add_geometric_features(shots)
     # Sanity filter: shots must be on the attacking half-ish.
