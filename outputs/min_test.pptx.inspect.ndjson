@@ -1,6 +1,0 @@
-{"kind":"deck","id":"pr/eiyac9","name":"Deck"}
-{"kind":"layout","layoutId":"ac435cf7-b568-4335-8f56-2bcb4793c419","name":"Master","type":"master"}
-{"kind":"layout","layoutId":"cf628aee-b506-4f33-aaf2-57e5ad294dc7","name":"Title Slide","type":"title"}
-{"kind":"slide","id":"sl/gbclpy","slide":1,"title":"Test deck","textShapes":1}
-{"kind":"textbox","id":"sh/p8nqxs72","slide":1,"text":"Test deck","textPreview":"Test deck","textChars":9,"textLines":1,"bbox":[100,100,600,80]}
-{"kind":"notes","id":"nt/gbclpy","slide":1,"text":""}
